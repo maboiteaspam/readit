@@ -8,7 +8,7 @@
   },
   "author": "maboiteaspam",
   "bin": {
-    "readit":"index.js"
+    "readit": "index.js"
   },
   "keywords": [
     "markdown",
@@ -22,6 +22,8 @@
     "express": "^4.12.3",
     "github-markdown": "^0.4.3",
     "opener": "^1.4.1",
-    "portscan": "^0.1.0"
+    "path-extra": "^1.0.2",
+    "portscan": "^0.1.0",
+    "tree-kill": "0.0.6"
   }
 }
