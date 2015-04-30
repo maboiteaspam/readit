@@ -21,7 +21,6 @@
     "commander": "^2.8.1",
     "express": "^4.12.3",
     "github-markdown": "^0.4.2",
-    "npmlog": "^1.2.0",
     "opener": "^1.4.1",
     "portscan": "^0.1.0"
   }

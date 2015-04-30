@@ -1,9 +1,9 @@
+#!/usr/bin/env node
 
 var pkg = require('./package.json');
 
 var program = require('commander');
 var path = require('path');
-var log = require('npmlog');
 var opener = require('opener');
 var express = require('express');
 var portscan = require('portscan');
