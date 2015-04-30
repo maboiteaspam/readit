@@ -4,7 +4,7 @@ CLI tool to read your MD files into your browser.
 
 ## Install
 
-``` npm i readit -g```
+``` npm i readit-md -g```
 
 ## Usage
 
