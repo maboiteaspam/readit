@@ -35,7 +35,7 @@ if(program.port){
     var config = {
       title: path.basename(file, '.md'),
       file: file,
-      template: '/template.jade'
+      template: null
     };
     new MD(config).render(function (html) {
       res.send(html);
