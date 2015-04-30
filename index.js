@@ -15,24 +15,22 @@ program.version(pkg.version);
 
 program
   .usage('[mdFile]')
-  .option('--port <port>', 'Starts server on port')
+  .option('--server', 'Starts http server')
+  .option('--port <port>', 'Port to listen on')
   .description('Opens README file in your browser')
   ._name = pkg.name;
 program.parse(process.argv);
 
 var port = program.port || 64000;
-var rFile = path.join(process.cwd(), (program.mdFile||'README.md'));
-var assetsPath = path.dirname(require.resolve('github-markdown'))+'/assets/';
-assetsPath = path.relative(__dirname, assetsPath);
 
-if(program.port){
 
+if(program.server){
+
+  var assetsPath = path.dirname(require.resolve('github-markdown'))+'/assets/';
   var app = express();
   app.use(express.static( assetsPath ) );
   app.get('/readit', function(req, res){
     var file = req.query.f;
-    console.log(file)
-    console.log(assetsPath)
     var config = {
       title: path.basename(file, '.md'),
       file: file,
@@ -42,11 +40,12 @@ if(program.port){
       res.send(html);
     });
   });
-  app.listen(program.port);
+  app.listen(port);
 
 }else{
 
-  var isOpen = function(then){
+  var rFile = path.join(process.cwd(), (program.mdFile||'README.md'));
+  var isPortOpen = function(then){
     var opts = {};
     opts.findOne = true;
     opts.findActive = false;
@@ -58,14 +57,17 @@ if(program.port){
     portscan(port, opts);
   };
 
-  isOpen(function(open){
+  isPortOpen(function(open){
     if(open){ // port is open
       var cmdLine = [];
       process.argv.forEach(function(v){
         cmdLine.push(v);
       });
-      cmdLine.push('--port' );
-      cmdLine.push(port );
+      cmdLine.push('--server' );
+      if(!program.port){
+        cmdLine.push('--port' );
+        cmdLine.push(port);
+      }
       spawn(cmdLine.shift(), cmdLine, { detached:true, stdio:'ignore' }).unref();
     }
     setTimeout(function(){
