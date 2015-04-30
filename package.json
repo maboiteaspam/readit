@@ -1,6 +1,6 @@
 {
   "name": "readit-md",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI tool to read README files in your browser",
   "main": "index.js",
   "scripts": {
