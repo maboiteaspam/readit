@@ -9,8 +9,12 @@ CLI tool to read your MD files into your browser.
 ## Usage
 
 ```sh
- readit 
- readit some.md
+    # open README.md at cwd
+    readit 
+    # open some.md at cwd
+    readit some.md
+    # starts the server only
+    readit --server --port 64000
 ```
 
 ## Under the hood
