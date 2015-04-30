@@ -23,6 +23,8 @@ Then it opens your browser with a specific url to read the MD file from your loc
 
 The webserver will remain open until you restart your computer.
 
+The server listens on 127.0.0.1:64000.
+
 ## TODO
 
 Take advantage of ```github-markdown``` template injection 

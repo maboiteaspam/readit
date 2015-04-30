@@ -22,10 +22,6 @@ program
 program.parse(process.argv);
 
 var port = program.port || 64000;
-var rFile = path.join(process.cwd(), (program.mdFile||'README.md'));
-var assetsPath = path.dirname(require.resolve('github-markdown'))+'/assets/';
-assetsPath = path.relative(__dirname, assetsPath);
-
 
 if(program.server){
 
@@ -43,11 +39,11 @@ if(program.server){
       res.send(html);
     });
   });
-  app.listen(port);
+  app.listen(port, '127.0.0.1');
 
 }else{
 
-  var rFile = path.join(process.cwd(), (program.mdFile||'README.md'));
+  var rFile = path.join(process.cwd(), (program.args[0]||'README.md'));
   var isPortOpen = function(then){
     var opts = {};
     opts.findOne = true;
