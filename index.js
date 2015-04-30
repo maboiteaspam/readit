@@ -22,8 +22,7 @@ program.parse(process.argv);
 
 var port = program.port || 64000;
 var rFile = path.join(process.cwd(), (program.mdFile||'README.md'));
-var assetsPath = path.dirname(require.resolve('github-markdown'))+'/assets/';
-assetsPath = path.relative(__dirname, assetsPath);
+var assetsPath = __dirname+'/assets/';
 
 if(program.port){
 
