@@ -30,8 +30,6 @@ if(program.port){
   app.use(express.static( assetsPath ) );
   app.get('/readit', function(req, res){
     var file = req.query.f;
-    console.log(file)
-    console.log(assetsPath)
     var config = {
       title: path.basename(file, '.md'),
       file: file,
