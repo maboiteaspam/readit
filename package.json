@@ -1,0 +1,28 @@
+{
+  "name": "readit",
+  "version": "1.0.0",
+  "description": "CLI tool to read README files in your browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "maboiteaspam",
+  "binary": {
+    "readit":"index.js"
+  },
+  "keywords": [
+    "markdown",
+    "node",
+    "cli",
+    "reader"
+  ],
+  "license": "WTF",
+  "dependencies": {
+    "commander": "^2.8.1",
+    "express": "^4.12.3",
+    "github-markdown": "^0.4.2",
+    "npmlog": "^1.2.0",
+    "opener": "^1.4.1",
+    "portscan": "^0.1.0"
+  }
+}
