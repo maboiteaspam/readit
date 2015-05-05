@@ -1,12 +1,16 @@
 {
   "name": "readit-md",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI tool to read README files in your browser",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "maboiteaspam",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/maboiteaspam/readit.git"
+  },
   "bin": {
     "readit": "index.js"
   },
@@ -25,5 +29,10 @@
     "path-extra": "^1.0.2",
     "portscan": "^0.1.0",
     "tree-kill": "0.0.6"
+  },
+  "devDependencies": {
+    "cluc": "^1.0.19",
+    "inquirer": "^0.8.3",
+    "semver": "^4.3.4"
   }
 }
