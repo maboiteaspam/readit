@@ -1,6 +1,6 @@
 # READ it !
 
-CLI tool to read your MD files into your browser.
+CLI tool to read MD files with your browser.
 
 ## Install
 
@@ -12,11 +12,20 @@ CLI tool to read your MD files into your browser.
 
     # open README.md at cwd
     readit 
+    
     # open some.md at cwd
     readit some.md
+    
+    # set a specific port
     readit some.md --port 64002
+    
+    # inject a specific css
     readit some.md --css /abs/path/to/css
+    
+    # inject a specific template
     readit some.md --template /abs/path/to/template
+    
+    # force a restart
     readit some.md --restart
     
     # starts the server only
@@ -46,20 +55,22 @@ CLI tool to read your MD files into your browser.
 
 ## Under the hood
 
-Under the hood, when you invoke the program, 
+When the program is invoked, 
 
-it will starts an http server on port 64000,
+it loads your preferences (css / template) from the user folder 
+in a file named ```readit.json```
+
+It will then starts an http server on port 64000,
 and detach it s process.
 
 If the server is already running, this process is re used.
 
-Then it opens your browser with a specific url 
-to read the MD file from your local file system.
+Once the webserver is ready, the default system browser is started at a specific url.
+
+This url is specifically forged to let you read to read the MD file from your local file system.
 
 The server will remain open until you restart your computer,
 or kill it, if you wish to.
-
-The server listens on 127.0.0.1:64000.
 
 ## TODO
 
