@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Readit : CLI tool to read your MD files into your browser.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Readit</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/maboiteaspam/readit">View on GitHub</a>
+
+          <h1 id="project_title">Readit</h1>
+          <h2 id="project_tagline">CLI tool to read your MD files into your browser.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/maboiteaspam/readit/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/maboiteaspam/readit/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="read-it-" class="anchor" href="#read-it-" aria-hidden="true"><span class="octicon octicon-link"></span></a>READ it !</h1>
+
+<p>CLI tool to read MD files with your browser.</p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
+
+<p><code>npm i readit-md -g</code></p>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<div class="highlight highlight-sh"><pre>
+    <span class="pl-c"># open README.md at cwd</span>
+    readit 
+
+    <span class="pl-c"># open some.md at cwd</span>
+    readit some.md
+
+    <span class="pl-c"># set a specific port</span>
+    readit some.md --port 64002
+
+    <span class="pl-c"># inject a specific css</span>
+    readit some.md --css /abs/path/to/css
+
+    <span class="pl-c"># inject a specific template</span>
+    readit some.md --template /abs/path/to/template
+
+    <span class="pl-c"># force a restart</span>
+    readit some.md --restart
+
+    <span class="pl-c"># starts the server only</span>
+    readit --server --port 64000
+</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-sh"><pre>
+  Usage: readit-md [mdFile]
+
+  Opens README file <span class="pl-k">in</span> your browser
+
+  Options:
+
+    -h, --help         output usage information
+    -V, --version      output the version number
+    --restart          Restart background server <span class="pl-k">if</span> any
+    --server           Starts http server
+    --port <span class="pl-k">&lt;</span>port<span class="pl-k">&gt;</span>      Port to listen on
+    --template <span class="pl-k">&lt;</span>port<span class="pl-k">&gt;</span>  jade template file to use
+    --css <span class="pl-k">&lt;</span>port<span class="pl-k">&gt;</span>       File path to your specific css
+</pre></div>
+
+<h2>
+<a id="under-the-hood" class="anchor" href="#under-the-hood" aria-hidden="true"><span class="octicon octicon-link"></span></a>Under the hood</h2>
+
+<p>When the program is invoked, </p>
+
+<p>it loads your preferences (css / template) from the user folder 
+in a file named <code>readit.json</code></p>
+
+<p>It will then starts an http server on port 64000,
+and detach it s process.</p>
+
+<p>If the server is already running, this process is re used.</p>
+
+<p>Once the webserver is ready, the default system browser is started at a specific url.</p>
+
+<p>This url is specifically forged to let you read to read the MD file from your local file system.</p>
+
+<p>The server will remain open until you restart your computer,
+or kill it, if you wish to.</p>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h2>
+
+<p>Take advantage of <code>github-markdown</code> template injection 
+to have configurable option to read MD files the way you ll prefer it.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Readit maintained by <a href="https://github.com/maboiteaspam">maboiteaspam</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
