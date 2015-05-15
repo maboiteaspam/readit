@@ -40,7 +40,7 @@ var pref = {
   template: null
 };
 
-var prefFile = path.join(path.tempdir(), 'readit.json');
+var prefFile = path.join(path.homedir(), 'readit.json');
 
 if( fs.existsSync(prefFile)){
   pref = JSON.parse(fs.readFileSync(prefFile));
