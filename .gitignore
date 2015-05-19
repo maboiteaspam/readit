@@ -29,3 +29,9 @@ build/Release
 node_modules
 
 github.json
+
+.local.json
+
+.idea/
+
+.local
