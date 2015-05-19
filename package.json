@@ -27,8 +27,10 @@
     "express": "^4.12.3",
     "github-markdown": "^0.4.3",
     "opener": "^1.4.1",
+    "os-tmpdir": "^1.0.1",
     "path-extra": "^1.0.2",
     "portscan": "^0.1.0",
+    "temporary-directory": "^1.0.1",
     "tree-kill": "0.0.6"
   },
   "devDependencies": {
