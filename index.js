@@ -12,9 +12,7 @@ var spawn = require('child_process').spawn;
 var MD = require('github-markdown');
 var kill = require('tree-kill');
 
-
 program.version(pkg.version);
-
 
 program
   .usage('[mdFile]')
@@ -26,10 +24,9 @@ program
   .description('Opens README file in your browser')
   ._name = pkg.name;
 
-
 program.parse(process.argv);
 
-if(program.h){
+if (program.h) {
   program.help();
 }
 
@@ -42,105 +39,100 @@ var pref = {
 
 var prefFile = path.join(path.homedir(), 'readit.json');
 
-if( fs.existsSync(prefFile)){
+if (fs.existsSync(prefFile)) {
   pref = JSON.parse(fs.readFileSync(prefFile));
 }
 
-program.restart = program.restart || (program.port && pref.port != program.port);
+program.restart = program.restart || (program.port && pref.port !== program.port);
 
-if( program.port ){
+if (program.port) {
   pref.port = program.port;
 }
 
-if( program.css ){
+if (program.css) {
   pref.css = path.resolve(program.css);
 }
 
-if( program.template ){
+if (program.template) {
   pref.template = program.template;
 }
 
-if(program.server){
-
+if (program.server) {
   var port = pref.port;
 
   var assetsPath = path.join(__dirname, '/assets/');
-  if(pref.template){
+  if (pref.template) {
     assetsPath = path.dirname(pref.template);
   }
 
   var app = express();
-  app.use(express.static( assetsPath ) );
+  app.use(express.static(assetsPath));
 
-  if(pref.css){
-    app.get(path.basename(pref.css), function(){
-      res.send(fs.readFileSync(pref.css))
+  if (pref.css) {
+    app.get(path.basename(pref.css), function (req, res) {
+      res.send(fs.readFileSync(pref.css));
     });
   }
 
-  app.get('/readit', function(req, res){
+  app.get('/readit', function (req, res) {
     var file = req.query.f;
     var config = {
       title: path.basename(file, '.md'),
       file: file,
-      template: assetsPath+'/template.jade'
+      template: assetsPath + '/template.jade'
     };
     new MD(config).render(function (html) {
-      if(pref.css){
-        html = html.replace(/<\/head>/, '<link href="/'+path.basename(pref.css)+'" rel="stylesheet"></head>')
+      if (pref.css) {
+        html = html.replace(/<\/head>/,
+          '<link href="/' + path.basename(pref.css) + '" rel="stylesheet"></head>');
       }
       res.send(html);
     });
   });
   app.listen(port, '127.0.0.1');
-
-}else{
-
-  var rFile = path.join(process.cwd(), (program.args[0]||'README.md'));
-  var isPortOpen = function(port,then){
+} else {
+  var rFile = path.join(process.cwd(), (program.args[0] || 'README.md'));
+  var isPortOpen = function (port, then) {
     var opts = {};
     opts.findOne = true;
     opts.findActive = false;
     opts.host = '127.0.0.1';
-    opts.complete = function(res){
-      then(res.successes===1);
+    opts.complete = function (res) {
+      then(res.successes === 1);
     };
-    opts.maxPort = port+1;
+    opts.maxPort = port + 1;
     portscan(port, opts);
   };
-  var startServer = function(){
+  var startServer = function () {
     var cmdLine = [];
-    process.argv.forEach(function(v){
+    process.argv.forEach(function (v) {
       cmdLine.push(v);
     });
-    cmdLine.push('--server' );
-    var sProcess = spawn(cmdLine.shift(), cmdLine, { detached:true, stdio:'ignore' });
+    cmdLine.push('--server');
+    var sProcess = spawn(cmdLine.shift(), cmdLine, {detached: true, stdio: 'ignore'});
     sProcess.unref();
     pref.pid = sProcess.pid;
-    fs.writeFileSync( prefFile, JSON.stringify(pref,null,4) );
+    fs.writeFileSync(prefFile, JSON.stringify(pref, null, 4));
   };
-  var openBrowser = function(port){
-    var browser = opener('http://localhost:'+port+'/readit?f='+rFile);
+  var openBrowser = function (port) {
+    var browser = opener('http://localhost:' + port + '/readit?f=' + rFile);
     browser.unref();
     browser.stdin.unref();
     browser.stdout.unref();
     browser.stderr.unref();
   };
 
-
-  if(program.restart){
-    if(pref.pid){
-      kill(parseInt(pref.pid), 'SIGKILL');
+  if (program.restart) {
+    if (pref.pid) {
+      kill(parseInt(pref.pid, 10), 'SIGKILL');
       pref.pid = null;
     }
   }
-  fs.writeFileSync( prefFile, JSON.stringify(pref,null,4) );
-  isPortOpen(pref.port,function(notOpen){
-    if(notOpen) startServer();
-    setTimeout(function(){
+  fs.writeFileSync(prefFile, JSON.stringify(pref, null, 4));
+  isPortOpen(pref.port, function (notOpen) {
+    if (notOpen) startServer();
+    setTimeout(function () {
       openBrowser(pref.port);
-    }, notOpen?2000:200);
+    }, notOpen ? 2000 : 200);
   });
-
 }
-

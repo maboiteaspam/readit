@@ -4,7 +4,8 @@
   "description": "CLI tool to read README files in your browser",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "semistandard"
   },
   "author": "maboiteaspam",
   "repository": {
